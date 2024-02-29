@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View, ViewComponent } from "react-native";
+import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ViewComponent } from "react-native";
 
 
-function LoginAdm(): JSX.Element {
+function CadastroAdm(): JSX.Element {
     
+    const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
     const [password, setPassword] = useState("");
+    
 
-    function login(){
+
+
+    function CadastroAdm(){
         const dados = {
+            nome:nome,
             email:email,
-            password: password,
+            cpf:cpf,
+            password:password
+        
         }
 
         console.log(dados);
@@ -18,50 +26,58 @@ function LoginAdm(): JSX.Element {
     
     
     return (
-
-        <View style={styles.container}>
+     
+        <View style={{...styles.container, marginTop: 20}}>
             <Image
             style={styles.logo}
             resizeMode="contain" 
             source={require('../assets/images/capivara1.png')}/>
 
             <View style={styles.card} >
-                <Text style={styles.title} > Login Administrador </Text>
+                <Text style={styles.title} >Criar Administrador </ Text>
 
                 <TextInput 
                 style={styles.input}
-                placeholder="E-mail" 
+                placeholder="Nome" 
+                placeholderTextColor={"#141414"}
+                onChangeText={(textNome) => setNome(textNome)}
+                />
+                
+                <TextInput 
+                style={styles.input}
+                placeholder="Email" 
                 placeholderTextColor={"#141414"}
                 onChangeText={(textEmail) => setEmail(textEmail)}
                 />
-
                 
                 <TextInput 
                 style={styles.input}
-                placeholder="Senha" 
+                placeholder="Duracao" 
+                placeholderTextColor={"#141414"}
+                onChangeText={(textCpf) => setCpf(textCpf)}
+                />
+                
+                
+                <TextInput 
+                style={styles.input}
+                placeholder="Preco" 
                 placeholderTextColor={"#141414"}
                 onChangeText={(textPassword) => setPassword(textPassword)}
-                secureTextEntry
                 />
-
-                <TouchableOpacity style={styles.buttom}
-                onPress={()=>{login()}}>
-                    
-                    <Text style={styles.buttonText}> Entrar </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <Text style={styles.forgotPassword}> Esqueceu a senha?</Text>
-                </TouchableOpacity>
-
                 
-                <TouchableOpacity>
-                    <Text style={styles.forgotPassword}> Não possui conta? Cadastre-se!</Text>
+                <TouchableOpacity style={styles.buttom}
+                onPress={()=>{CadastroAdm()}}>
+                    
+                    <Text style={styles.buttonText}> Criar </Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity>
+                    <Text style={styles.forgotPassword}> Já possui cadastro? Faça Login</Text>
+                </TouchableOpacity>
+           
             </View>
         </View>
- 
+       
 
     );
 
@@ -126,6 +142,7 @@ const styles =  StyleSheet.create({
         fontSize: 16,
         lineHeight: 40
     },
+    
     forgotPassword: {
         color: '#F76900',
         textAlign: 'center',
@@ -133,6 +150,7 @@ const styles =  StyleSheet.create({
     }
 
 
+
 });
 
-export default LoginAdm;
+export default CadastroAdm;
